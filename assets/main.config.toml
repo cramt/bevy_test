@@ -1,0 +1,19 @@
+[main_ball]
+size = 50
+starting_position = [100,2,3]
+
+[main_ball.color.Rgba]
+red = 0.25
+green = 0.6
+blue = 1.0
+alpha = 1.0
+
+[follower_ball]
+size = 5
+starting_position = [1,2,3]
+
+[follower_ball.color.Rgba]
+red = 0.33
+green = 0.02
+blue = 0.6
+alpha = 1.0

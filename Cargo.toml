@@ -1,0 +1,11 @@
+[package]
+name = "game_thingy"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.8.1"
+bevy_common_assets = { version = "0.3", features = ["yaml"]}
+serde = { version = "1", features = ["derive"] }

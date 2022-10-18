@@ -1,0 +1,17 @@
+main_ball:
+  size: 50
+  starting_position: [100, 0, 0]
+  color: !Rgba
+    red: 0.25
+    green: 0.6
+    blue: 1
+    alpha: 1
+
+follower_ball:
+  size: 50
+  starting_position: [-100, 0, 0]
+  color: !Rgba
+    red: 0.33
+    green: 0.02
+    blue: 0.6
+    alpha: 1
