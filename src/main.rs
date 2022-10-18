@@ -1,3 +1,5 @@
+use std::{hash::Hash, mem::transmute};
+
 use bevy::{
     asset::AssetServerSettings, prelude::*, render::camera::RenderTarget,
     sprite::MaterialMesh2dBundle,
@@ -31,6 +33,20 @@ enum AppState {
     Level,
 }
 
+#[derive(Clone, PartialEq, Debug)]
+struct SpeedState {
+    old_pos: Option<(f32, f32)>,
+}
+
+impl Eq for SpeedState {}
+
+impl Hash for SpeedState {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        let a: &Option<(u32, u32)> = unsafe { transmute(&self.old_pos) };
+        a.hash(state);
+    }
+}
+
 fn main() {
     App::new()
         .insert_resource(AssetServerSettings {
@@ -41,6 +57,7 @@ fn main() {
         .add_plugin(YamlAssetPlugin::<Config>::new(&["config.yaml"]))
         .insert_resource(Msaa { samples: 1 })
         .add_state(AppState::Loading)
+        .add_state(SpeedState { old_pos: None })
         .add_startup_system(setup)
         .add_system_set(SystemSet::on_update(AppState::Loading).with_system(spawn_level))
         .add_system(run)
